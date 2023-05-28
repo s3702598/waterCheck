@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add new city to the API </title>
+</head>
+<body>
+    <h1>Follow these steps to add new city to the S3 bucket</h1>
+
+    <h2>1. Upload File to S3 Bucket</h2>
+    <p>Please note that the code will decode file that meets following conditions:<br>
+        1. Needs to be in JSON format<br>
+        2. Needs to have "CollectionDate" field in yyyy-mm-dd format<br>
+        3. Needs to include "beachName" string<br>
+        5. Needs to have a "statusFlag" field with an "UNSAFE" value <br>
+        If the file does not meet the following format, feel free to update processData method in app.py to match your file.<br>
+    </p>
+	<form method="POST" action="/upload" enctype="multipart/form-data">
+		<label for="file">Choose a file:</label>
+		<input type="file" id="file" name="file">
+		<br><br>
+		<input type="submit" value="Upload">
+	</form>
+
+    <h2>Click below button </h2>
+
+</body>
+</html>

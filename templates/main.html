@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet' />   
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>Watercheck</title>
+</head>
+<body>
+    <header class="fixed-top page-header">
+        <div class="container-fluid container-fluid-max">
+            <nav id="navbar" class="navbar navbar-dark fixed-top">
+              <a class="navbar-brand" href="#home"> 
+                <img src="{{ url_for('static', filename='logogr-nobg.png') }}" style="height: 50px;" alt="Logo">
+              </a> 
+              <div class=" justify-content-lg-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main') }}">Home</a>
+                    </li>
+                
+                    {% if logged_in %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user') }}">
+                            User Account for user: {{ session.username }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+          </div>
+    </header>
+
+    <main>
+      <!-- Banner Section -->
+      <section id="home" class="d-flex align-items-center position-relative vh-100 cover hero" style="background-image:url({{ url_for('static', filename='lake.jpg') }});">
+        <div class="container-fluid container-fluid-max">
+          <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <h1 class="text-white">Water Quality Checker </h1>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Map Section -->
+      <section>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <h1> Current Conditions </h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="container" id='map'></div>
+            </div>
+          </div>
+      </section>
+      <!-- List Section -->
+      <section>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <h1>Forecasted Water Quality</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th>Date</th>
+                    <th>Beach Name</th>
+                    <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% set prev_date = '' %}
+                  {% for beach_name, date, status in status_list %}
+                    {% if date != prev_date %}
+                      <tr class="table-primary">
+                        <td>{{ date }}</td>
+                        <td>{{ beach_name }}</td>
+                        <td>{{ status }}</td>
+                      </tr>
+                      {% set prev_date = date %}
+                    {% else %}
+                      <tr class="custom-secondary">
+                        <td></td>
+                        <td>{{ beach_name }}</td>
+                        <td>{{ status }}</td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='map.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/jquery-3.6.0.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+
+</main>
+<footer>
+    <br><br>
+    <h4> For more information on water quality and swim advisories, visit your local municipality page. </h4>
+    <br><p>&copy; Watercheck 2023</p>
+</footer>
+</body>

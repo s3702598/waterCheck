@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add new city to the API </title>
+</head>
+<body>
+    <h1>Follow these steps to add new city to the S3 bucket</h1>
+
+    <h2>1. Upload File to S3 Bucket</h2>
+    <a href="{{ url_for('upload') }}"><button>Upload</button></a>
+
+    <h2>2. Create table in DynamoDb</h2>
+    <p> Table name: city <br>
+        Partition key: beach_name (String)<br>
+        Sort Key: date (String)<br></p>
+
+    <h2>3. Populate table with information from file in S3</h2>
+    <a href="{{ url_for('add_to_beach_table') }}"><button>Populate table</button></a>
+
+    <h2>4. Create second table in DynamoDb</h2>
+    <p> Table name: city-rain <br>
+        Partition key: date (String)<br>
+        Sort Key: precipitation (Number)<br></p>
+
+    <h2>5. Get rain information</h2>
+    <p> Go to <a href="https://open-meteo.com/en/docs/historical-weather-api"><button>Open Meteo API</button></a>  <br>
+        Select city and dates that correspond with previously downloaded water quality file<br>
+        Get the url for API<br></p>
+
+    <form method="post" action="/precipitation">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>.6 Create third table in DynamoDb</h2>
+    <p> Table name: city_day_before_p <br>
+        Partition key: beach_name (String)<br>
+        Sort Key: date (Number)<br></p>
+
+    <h2>7. Populate third table with data from first and second table</h2>
+    <a href="{{ url_for('process_date_before') }}"><button>Populate table</button></a>
+
+    <h2>7. View the information on when each beach should be deemed as unsafe to swim</h2>
+    <a href="{{ url_for('get_90_precentile') }}"><button>View information</button></a>
+
+    
+</body>
+</html>

@@ -1,0 +1,175 @@
+:root {
+  --lightblue: #F6F9FC;
+  --red: #d64041;
+  --blue: #4B8DB5;
+  --darkbeige: #A19A7B;
+  --lightbeige: #DFD9C7;
+  --black: #1F0E06;
+  --darkblue: #446C86;
+  --verydbblue: #1a3a4f;
+}
+
+body {
+  background-color: var(--blue);
+  text-align: center;
+}
+
+a,
+a:hover {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.bg-lightblue {
+  background: var(--lightblue);
+}
+
+.bg-red {
+  background: var(--darkblue);
+}
+
+.text-red {
+  color: var(--red);
+}
+
+.container-fluid-max {
+  max-width: 1440px;
+}
+
+.cover {
+  background: no-repeat center/cover;
+}
+
+.p-15 {
+  padding: 15px;
+}
+
+.scroll .page-header {
+  background: var(--darkblue);
+}
+
+.page-header {
+  transition: background 0.5s ease-in-out;
+}
+
+.page-header .navbar {
+  padding: 1rem 0;
+}
+
+.page-header .navbar-toggler {
+  border-color: var(--white);
+}
+
+@media screen and (max-width: 991px) {
+  .page-header {
+    background: var(--darkblue);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #navbarNav {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0 10px;
+  }
+
+  #navbarNav ul.navbar-nav {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.scroll .hero {
+  transform: scale(0.98);
+}
+
+.hero {
+  background-attachment: fixed;
+  transition: transform 0.5s ease-in-out;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.5) 0,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.1) 100%);
+}
+
+.hero .container-fluid {
+  z-index: 10;
+}
+
+#navbar {
+  transition: background-color 0.3s ease-in-out;
+  background-color: #446C86;
+}
+
+#navbar.bg-dark {
+  background-color: #333;
+}
+
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #4B8DB5;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #4B8DB5, #446C86, #1a3a4f);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #4B8DB5, #446C86, #1a3a4f);
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+  }
+}
+
+
+#map {
+  width: 600px;
+  height: 400px;
+}
+
+.red {
+  background: red !important;
+}
+
+.green {
+  background: green !important;
+}
+
+.gray {
+  background: gray !important;
+}
+
+section {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.custom-secondary{
+  backgr;ound-color: var(--lightblue)
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+  <title>User Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet' />   
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="fixed-top page-header">
+    <div class="container-fluid container-fluid-max">
+        <nav id="navbar" class="navbar navbar-dark fixed-top">
+          <a class="navbar-brand" href="#home"> 
+            <img src="{{ url_for('static', filename='logogr-nobg.png') }}" style="height: 50px;" alt="Logo">
+          </a> 
+          <div class=" justify-content-lg-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main') }}">Home</a>
+                </li>
+            
+                {% if logged_in %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user') }}">
+                        User Account for user: {{ session.username }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+      </div>
+  </header>
+  <main>
+    <h1>Welcome, {{ session.username }}!</h1>
+    <p>Your email is: {{ session.user_email }}</p>
+
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-lg-6">
+                  <div class="card-body p-md-5 mx-md-4">
+    
+                    <form action="" method="post">
+                      <h3>Change your password</h3>
+    
+                      <div class="form-outline mb-4">
+                        <input type="password" id="old_password" name="old_password" class="form-control"
+                          placeholder="Old Password" required>
+                        <label class="form-label" for="old_password">Old Password</label>
+                      </div>
+    
+                      <div class="form-outline mb-4">
+                        <input type="password" id="new_password" name="new_password" class="form-control"
+                          placeholder="New Password" required>
+                        <label class="form-label" for="new_password">New Password</label>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control"
+                          placeholder="Confirm Password" required>
+                        <label class="form-label" for="confirm_password">Confirm New Password</label>
+                      </div>
+
+                      <div class="text-center pt-1 mb-5 pb-1">
+                        <input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" 
+                        value="Change Password">
+                      </div>
+    
+                    </form>
+
+                    {% if message %}
+                      <p style="color: red;">{{ message }}</p>
+                    {% endif %}
+    
+                  </div>
+                </div>
+              </div>
+
+      </div>
+    </section>
+    
+    <section>
+
+    <h2>Favorite Beaches Alerts</h2>
+
+    </section>
+  </main>
+</body>
+</html>
